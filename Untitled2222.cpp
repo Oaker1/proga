@@ -24,7 +24,7 @@ int main(){
 	{
 		double a = 10;
 		double b = rz-(k);
-		int l = pow(a,b);  // не убивайте за pow пожалуйста
+		int l = pow(a,b);  // ne ubivaite za pow pozhaluista
 		std::cout  << v1/l << "*" << 10 << "^" << rz-(k-1);
 		if (k<=rz-1)
 			std::cout << " + ";
