@@ -1,0 +1,55 @@
+#include <Adafruit_NeoPixel.h>
+#define PIN 6 // номер порта к которому подключен модуль
+#define count_led 64// количество светодиодов
+Adafruit_NeoPixel pixels = Adafruit_NeoPixel(count_led, PIN, NEO_GRB + NEO_KHZ800); //first number change does distance between colors
+void setup() {
+Serial.begin(9600);
+pixels.begin();
+}
+void loop() {
+
+int j=0;
+int i=0;
+for (i=0;i<count_led;i++)
+{
+pixels.setPixelColor(i+j,pixels.Color(0,0,0));
+}
+int a[8][8]={
+{1,0,0,0,1,0,0,0},
+{0,1,0,1,0,0,0,0},
+{0,0,1,0,0,0,0,0},
+{0,1,0,1,0,0,0,0},
+{1,0,0,0,1,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0}
+};
+/*for (j=0; j<7; j++){
+a[1][j]=1;
+a[7][j]=1;
+}
+for (i=1; i<7 ; i++)
+{
+a[i][1]=1;
+a[i][7]=1;
+}
+*/
+pixels.show();
+delay(500);
+for (i=0;i<8;i++)
+{
+	for (j=0; j<8; j++){
+		if (a[i][j]==1){
+			if (i+2 % 2 == 0){
+			pixels.setPixelColor(i*8+j,pixels.Color(255,0,0));
+			}
+			else 
+			{
+			pixels.setPixelColor(i*8+7-j,pixels.Color(255,0,0));
+			}
+        }
+	}
+}
+pixels.show();
+delay(1000);
+}
